@@ -1,12 +1,27 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, Text, View } from "react-native";
 import { AFF_API_URL } from '@env';
 
 export default function AffirmationsScreen() {
 
+    const [affirmation, setAffirmation] = useState('');
+
+    const getAffirmation = () => {
+        fetch(`${AFF_API_URL}`)
+        .then(response => response.json())
+        .then(data => setAffirmation(data.affirmation))
+        .catch(error => {
+            Alert.alert('Error', error);
+        });
+    }
+
+    useEffect(() => {
+        getAffirmation();
+    }, []);
+
     return(
         <View>
-            <Text>This is Affirmations</Text>
+            <Text>{affirmation}</Text>
         </View>
     );
 }
