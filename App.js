@@ -1,12 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AffirmationsScreen from './components/AffirmationsScreen';
+import HomeScreen from './components/HomeScreen';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function App() {
+
+  const Tab = createBottomTabNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = 'home-outline';
+            } else if (route.name === 'Affirmations') {
+              iconName = 'hand-heart-outline';
+            }
+
+            return <MaterialCommunityIcons name={iconName} size={24} color='black' />
+          },
+        })}>
+        <Tab.Screen name='Home' component={HomeScreen} />
+        <Tab.Screen name='Affirmations' component={AffirmationsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
