@@ -1,42 +1,47 @@
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AffirmationsScreen from './components/AffirmationsScreen';
-import HomeScreen from './components/HomeScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import AddDailyScreen from './screens/AddDailyScreen';
+import AffirmationsScreen from './screens/AffirmationsScreen';
+import HomeScreen from './screens/HomeScreen';
+import CalendarScreen from './screens/CalendarScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function App() {
 
-  const Tab = createBottomTabNavigator();
+  const Drawer = createDrawerNavigator();
 
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = 'home-outline';
-            } else if (route.name === 'Affirmations') {
-              iconName = 'hand-heart-outline';
-            }
-
-            return <MaterialCommunityIcons name={iconName} size={24} color='black' />
-          },
-        })}>
-        <Tab.Screen name='Home' component={HomeScreen} />
-        <Tab.Screen name='Affirmations' component={AffirmationsScreen} />
-      </Tab.Navigator>
+      <Drawer.Navigator initialRouteName='Affirmations'>
+      <Drawer.Screen name='Calendar' component={CalendarScreen}
+          options={{
+            title: 'Calendar',
+            drawerIcon: ({ focused, color, size }) =>
+              <MaterialCommunityIcons name='home-outline' size={24} color='black' />
+          }}
+        />
+        <Drawer.Screen name='Home' component={HomeScreen}
+          options={{
+            title: 'Home',
+            drawerIcon: ({ focused, color, size }) =>
+              <MaterialCommunityIcons name='home-outline' size={24} color='black' />
+          }}
+        />
+        <Drawer.Screen name='Today' component={AddDailyScreen}
+          options={{
+            title: 'Today',
+            drawerIcon: ({ focused, color, size }) =>
+            <MaterialCommunityIcons name="calendar-today" size={24} color="black" />
+          }}
+        />
+        <Drawer.Screen name='Affirmations' component={AffirmationsScreen} 
+          options={{
+            title: 'Affirmations',
+            drawerIcon: ({ focused, color, size }) =>
+              <MaterialCommunityIcons name='hand-heart-outline' size={24} color='black' />
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
