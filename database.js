@@ -1,7 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 
 //database connection
-const db = SQLite.openDatabase('selfcaredb.db');
+export const db = SQLite.openDatabase('selfcaredb.db');
 
 //creating the daily table
 db.transaction(tx => {
@@ -55,34 +55,9 @@ export const getAllDaily = () => {
 //creating the routine table
 db.transaction(tx => {
     tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS routine (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, routinename TEXT, routinestatus TEXT);'
+        'CREATE TABLE IF NOT EXISTS routine (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, routine_name TEXT, completed INTEGER);'
         );
     });
-
-//inserting data into the routine table
-export const addRoutine = () => {
-    db.transaction(tx => {
-        tx.executeSql('INSERT INTO routine (routinename, routinestatus) VALUES (?, ?);', [routinename, routinestatus]);
-    }, null, updateList
-    )
-};
-
-//updating routine list
-export const updateRoutineList = () => {
-    db.transaction(tx => {
-        tx.executeSql('SELECT * FROM routine;', [], (_, { rows }) =>
-        setRoutines(rows._array)
-       );
-   });
-};
-
-//deleting item from routine list
-export const deleteRoutine = (id) => {
-    db.transaction(tx => {
-        tx.executeSql(`DELETE FROM routine WHERE id = ?;`, [id]);
-    }, null, updateRoutineList
-   )
-};
 
 //fetching all data from the routine table
 export const getAllRoutines = () => {

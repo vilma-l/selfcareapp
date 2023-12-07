@@ -1,3 +1,5 @@
+//NOT DONE
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { getAllDaily } from '../database';

@@ -6,7 +6,7 @@ export default function HomeScreen({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text>This is Home</Text>
+            <Text>TÄHÄN LOGO TMS</Text>
         </SafeAreaView>
     );
 }

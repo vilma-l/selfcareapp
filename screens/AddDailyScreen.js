@@ -100,6 +100,7 @@ export default function AddDailyScreen({ navigation }) {
                 <View style={styles.options}>
                     <TextInput style={styles.input}
                         placeholder='How many hours did you sleep last night?'
+                        keyboardType='numbers-and-punctuation'
                         onChangeText={(text) => setHoursOfSleep(text)}
                         value={hoursOfSleep}
                     />
