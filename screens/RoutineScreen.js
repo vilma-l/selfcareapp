@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, View, Switch, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TextInput, View, FlatList, SafeAreaView } from 'react-native';
 import { Button } from '@rneui/themed';
 import { db } from "../database";
+import Checkbox from 'expo-checkbox';
 
 export default function RoutineScreen() {
 
@@ -26,7 +27,8 @@ export default function RoutineScreen() {
 
     const addRoutine = () => {
         db.transaction((tx) => {
-            tx.executeSql('INSERT INTO routine (routine_name, completed) VALUES (?, 0)', [newRoutine], (_, { insertId }) => {
+            tx.executeSql('INSERT INTO routine (routine_name, completed) VALUES (?, ?)', [newRoutine, 0], 
+            (_, { insertId }) => {
                 fetchData();
                 setNewRoutine('');
             },
@@ -46,14 +48,29 @@ export default function RoutineScreen() {
             });
         });
     };
+    
+    const deleteRoutine = (id) => {
+        db.transaction(
+            tx => {
+                tx.executeSql('DELETE FROM routine WHERE id = ?;', [id], () => {
+                    fetchData();
+                });
+            },
+            (error) => {
+                console.error('Error deleting routine:', error);
+            }
+        );
+    }
+    
 
     const renderItem = ({ item }) => (
         <View style={styles.listcontainer}>
-            <Text style={{fontSize: 20}}>{item.routine_name}</Text>
-            <Button 
-                title={item.completed ? 'Undo' : 'Completed'} 
+            <Text style={{ fontSize: 20 }}>{item.routine_name}</Text>
+            <Button
+                title={item.completed ? 'Not done ✗' : 'Done ✓'}
                 onPress={() => updateCompleted(item.id, item.completed)}
             />
+            <Text onPress={() => deleteRoutine(item.id)}>Delete</Text>
         </View>
     );
 
