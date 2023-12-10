@@ -2,6 +2,8 @@ import { Button, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { Alert, Text, View, SafeAreaView } from "react-native";
 import { AFF_API_URL } from '@env';
+import {auth} from '../firebase';
+import { signOut } from 'firebase/auth';
 
 export default function AffirmationsScreen({ navigation }) {
 
@@ -22,12 +24,20 @@ export default function AffirmationsScreen({ navigation }) {
         getAffirmation();
     }, []);
 
+    const handleLogout = () => {
+        signOut(auth)
+        .then(() => navigation.navigate('Login'))
+    }
+
     return(
         <SafeAreaView style={styles.container}>
             <Text style={styles.text}>{affirmation}</Text>
             <View style={styles.buttons}>
                 <Button title='Add Mood' color='#2f113b' onPress={() => navigation.navigate('Today')} />
-                <Button title='Home' color='#2f113b' onPress={() => navigation.navigate('Home')} />
+                <Button title='Routines' color='#2f113b' onPress={() => navigation.navigate('Routines')} />
+            </View>
+            <View style={styles.buttons}>
+                <Button title='Logout' color='#2f113b' onPress={handleLogout} />
             </View>
         </SafeAreaView>
     );
@@ -39,6 +49,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#E6E6FA',
       alignItems: 'center',
       justifyContent: 'center',
+      padding: 5,
     },
     text: {
         fontSize: 20,
