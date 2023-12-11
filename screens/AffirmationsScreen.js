@@ -1,6 +1,6 @@
-import { Button, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Alert, Text, View, SafeAreaView } from "react-native";
+import { Alert, Text, View, SafeAreaView, StyleSheet } from "react-native";
+import { Button } from '@rneui/themed';
 import { AFF_API_URL } from '@env';
 import {auth} from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -15,7 +15,7 @@ export default function AffirmationsScreen({ navigation }) {
         .then(response => response.json())
         .then(data => setAffirmation(data.affirmation))
         .catch(error => {
-            Alert.alert('Error', error);
+            Alert.alert('Error finding an affirmation: ', error);
         });
     }
 
@@ -33,11 +33,12 @@ export default function AffirmationsScreen({ navigation }) {
         <SafeAreaView style={styles.container}>
             <Text style={styles.text}>{affirmation}</Text>
             <View style={styles.buttons}>
-                <Button title='Add Mood' color='#2f113b' onPress={() => navigation.navigate('Today')} />
+                <Button title='Track your mood' color='#2f113b' onPress={() => navigation.navigate('Mood Tracker')} />
+                <Button title='Log your sleep' color='#2f113b' onPress={() => navigation.navigate('Sleep Tracker')} />
                 <Button title='Routines' color='#2f113b' onPress={() => navigation.navigate('Routines')} />
             </View>
             <View style={styles.buttons}>
-                <Button title='Logout' color='#2f113b' onPress={handleLogout} />
+                <Button title='LOGOUT' color='#2f113b' onPress={handleLogout} />
             </View>
         </SafeAreaView>
     );
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#E6E6FA',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: 5,
+      padding: 20,
     },
     text: {
         fontSize: 20,
@@ -61,5 +62,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         marginTop: 20,
+    },
+    options: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    text: {
+        fontSize: 20,
+        color: 'black',
+        textAlign: 'center',
     },
   });

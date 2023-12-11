@@ -4,15 +4,15 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { initializeApp, getApps } from 'firebase/app';
 import { auth, firebaseConfig } from './firebase';
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
-import AddDailyScreen from './screens/AddDailyScreen';
+import AddDailyScreen from './screens/AddDailySleepScreen';
 import AffirmationsScreen from './screens/AffirmationsScreen';
+import AddMoodScreen from './screens/AddMoodScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import RoutineScreen from './screens/RoutineScreen';
 import SignupScreen from './screens/SignupScreen';
 import LoginScreen from './screens/LoginScreen';
+import AddDailySleepScreen from './screens/AddDailySleepScreen';
 
 if (getApps().length === 0) {
   initializeApp(firebaseConfig);
@@ -32,36 +32,36 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName={isSignedIn ? 'Affirmations' : 'Login'}>
+      <Drawer.Navigator initialRouteName={isSignedIn ? 'Mood Tracker' : 'Login'}>
         {isSignedIn ? (
           <>
+            <Drawer.Screen
+              name="Mood Tracker"
+              component={AddMoodScreen}
+              options={{
+                title: 'Mood Tracker',
+                drawerIcon: ({ focused, color, size }) => (
+                  <MaterialCommunityIcons name="table-heart" size={24} color="black" />
+                ),
+              }}
+            />
             <Drawer.Screen
               name="Affirmations"
               component={AffirmationsScreen}
               options={{
-                title: 'Affirmations',
+                title: 'Affirmation',
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="hand-heart-outline" size={24} color="black" />
                 ),
               }}
             />
             <Drawer.Screen
-              name="Calendar"
-              component={CalendarScreen}
+              name="Sleep Tracker"
+              component={AddDailySleepScreen}
               options={{
-                title: 'Calendar',
+                title: 'Sleep Tracker',
                 drawerIcon: ({ focused, color, size }) => (
-                  <MaterialCommunityIcons name="home-outline" size={24} color="black" />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="Today"
-              component={AddDailyScreen}
-              options={{
-                title: 'Today',
-                drawerIcon: ({ focused, color, size }) => (
-                  <MaterialCommunityIcons name="calendar-today" size={24} color="black" />
+                  <MaterialCommunityIcons name="sleep" size={24} color="black" />
                 ),
               }}
             />
@@ -72,6 +72,16 @@ export default function App() {
                 title: 'Routines',
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="notebook-outline" size={24} color="black" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Calendar"
+              component={CalendarScreen}
+              options={{
+                title: 'Calendar',
+                drawerIcon: ({ focused, color, size }) => (
+                  <MaterialCommunityIcons name="home-outline" size={24} color="black" />
                 ),
               }}
             />

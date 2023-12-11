@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, View, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TextInput, View, FlatList, SafeAreaView, Alert } from 'react-native';
 import { Button } from '@rneui/themed';
 import { db } from "../database";
-import Checkbox from 'expo-checkbox';
 
 export default function RoutineScreen() {
 
@@ -14,27 +13,39 @@ export default function RoutineScreen() {
     }, []);
 
     const fetchData = () => {
+        const currentDate = new Date().toISOString().split('T')[0];
         db.transaction((tx) => {
             tx.executeSql('SELECT * FROM routine', [], (_, { rows }) => {
-                const data = rows._array;
+                const data = rows._array.map((item) => {
+                    if (item.last_updated !== currentDate) {
+                        updateCompleted(item.id, false);
+                        item.completed = false;
+                        tx.executeSql('UPDATE routine SET last_updated = ? WHERE id = ?', [currentDate, item.id]);
+                    }
+                    return item;
+                });
                 setRoutines(data);
             },
             (error) => {
-                console.error('Error fetching data:', error);
+                Alert.alert('Error fetching data:', error);
             });
         });
     };
 
     const addRoutine = () => {
+        const currentDate = new Date().toISOString().split('T')[0];
         db.transaction((tx) => {
-            tx.executeSql('INSERT INTO routine (routine_name, completed) VALUES (?, ?)', [newRoutine, 0], 
-            (_, { insertId }) => {
-                fetchData();
-                setNewRoutine('');
-            },
-            (error) => {
-                console.error('Error adding routine:', error);
-            });
+            tx.executeSql(
+                'INSERT INTO routine (routine_name, completed, last_updated) VALUES (?, ?, ?)',
+                [newRoutine, 0, currentDate],
+                (_, { insertId }) => {
+                    fetchData();
+                    setNewRoutine('');
+                },
+                (error) => {
+                    console.error('Error adding routine:', error);
+                }
+            );
         });
     };
 
@@ -44,7 +55,7 @@ export default function RoutineScreen() {
                 fetchData();
             },
             (error) => {
-                console.error('Error updating completed status:', error);
+                Alert.alert('Error updating completed status:', error);
             });
         });
     };
@@ -57,20 +68,30 @@ export default function RoutineScreen() {
                 });
             },
             (error) => {
-                console.error('Error deleting routine:', error);
+                Alert.alert('Error deleting routine:', error);
             }
         );
     }
     
-
     const renderItem = ({ item }) => (
         <View style={styles.listcontainer}>
-            <Text style={{ fontSize: 20 }}>{item.routine_name}</Text>
+            <Text style={{ fontSize: 20, padding: 10 }}>{item.routine_name}</Text>
             <Button
-                title={item.completed ? 'Not done ✗' : 'Done ✓'}
+                size="lg" 
+                type='outline' 
+                buttonStyle={{ borderColor: '#2f113b' }}
+                titleStyle={{ color: '#2f113b' }} 
+                title={item.completed ? 'Not done ✗' : 'Done for today ✓'}
                 onPress={() => updateCompleted(item.id, item.completed)}
             />
-            <Text onPress={() => deleteRoutine(item.id)}>Delete</Text>
+            <Button 
+                icon={{name: "delete"}}
+                size="lg"
+                type="outline"
+                buttonStyle={{ borderColor: '#2f113b' }}
+                titleStyle={{ color: '#2f113b' }}
+                onPress={() => deleteRoutine(item.id)} 
+            />
         </View>
     );
 
@@ -82,7 +103,6 @@ export default function RoutineScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={{ fontSize: 20, marginBottom: 20 }}>Daily Routines</Text>
 
             <FlatList 
                 data={routines}
@@ -124,9 +144,9 @@ const styles = StyleSheet.create({
         marginLeft: '10%',
       },
       input: {
-        margin: 10,
+        marginBottom: 30,
         fontSize: 20,
-        width: 200,
+        width: 300,
         borderColor: 'black',
         borderWidth: 1,
         padding: 5,
@@ -135,5 +155,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 10,
+        margin: 10,
       },
   });

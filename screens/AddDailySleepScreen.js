@@ -2,17 +2,9 @@ import { Alert, StyleSheet, TextInput } from 'react-native';
 import { useState } from 'react';
 import { Button } from '@rneui/themed';
 import { Text, TouchableOpacity, SafeAreaView, View} from 'react-native';
-import { addDaily } from '../database';
+import { addSleep, getSleepByDate, updateSleep } from '../database';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TextBox from '../components/TextBox';
-
-const moodOptions = [
-    {name: 'weather-sunny', label: 'Great'},
-    {name: 'weather-partly-cloudy', label: 'Good'},
-    {name: 'weather-cloudy', label: 'Neutral'},
-    {name: 'weather-rainy', label: 'Bad'},
-    {name: 'weather-pouring', label: 'Awful'},
-]
 
 const sleepOptions = [
     {name: 'emoticon-happy-outline', label: 'Great'},
@@ -20,49 +12,35 @@ const sleepOptions = [
     {name: 'emoticon-sad-outline', label: 'Bad'},
 ]
 
-export default function AddDailyScreen({ navigation }) {
+export default function AddDailySleepScreen({ navigation }) {
 
-    const [mood, setMood] = useState('');
     const [hoursOfSleep, setHoursOfSleep] = useState('');
     const [sleepQuality, setSleepQuality] = useState('');
-    //täytyy liittää jotenkin päivään & kalenteriin
 
-    //save the daily statistics
-    const saveDaily = async () => {
-        if (mood && hoursOfSleep && sleepQuality) {
+    // Save the daily sleep data
+    const saveDailySleep = async () => {
+        if (hoursOfSleep && sleepQuality) {
             const date = new Date().toISOString();
             try {
-                await addDaily(date, mood, hoursOfSleep, sleepQuality);
-                navigation.navigate('Home');
+                const existingSleepData = await getSleepByDate(date);
+    
+                if (existingSleepData.length === 0) {
+                    // Save sleep data
+                    await addSleep(date, hoursOfSleep, sleepQuality);
+                } else {
+                    // There is already some sleep data, updating
+                    await updateSleep(date, hoursOfSleep, sleepQuality);
+                }
+    
+                navigation.navigate('Affirmations');
+    
             } catch (error) {
                 console.error('Error saving daily statistics:', error);
             }
         } else {
-            Alert.alert('Please fill everything before saving')
+            Alert.alert('Please fill everything before saving');
         }
     };
-
-    //choosing the mood from different options
-    const chooseMoodOption = (option) => {
-        const isSelected = mood === option.name;
-
-        return(
-            <TouchableOpacity
-                key={option.name}
-                onPress={() => setMood(option.name)}
-                style={{
-                    alignItems: 'center',
-                    margin: 10,
-                    padding: 10,
-                    borderRadius: 10,
-                    backgroundColor: isSelected ? '#e6b4fa' : 'transparent',
-                }}
-            >
-                <MaterialCommunityIcons name={option.name} size={28} color='black' />
-                <Text>{option.label}</Text>
-            </TouchableOpacity>
-        );
-    }
 
     //choosing the sleep quality from different options
     const chooseSleepQualityOption = (option) => {
@@ -88,14 +66,8 @@ export default function AddDailyScreen({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-            <TextBox>
-                <Text style={styles.text}>How's your mood?</Text>
-                <View style={styles.options}>
-                    {moodOptions.map((option) => chooseMoodOption(option))}
-                </View>
-            </TextBox>
 
-            <TextBox>
+            <TextBox style={styles.textbox}>
                 <Text style={styles.text}>How many hours did you sleep last night?</Text>
                 <View style={styles.options}>
                     <TextInput style={styles.input}
@@ -107,7 +79,7 @@ export default function AddDailyScreen({ navigation }) {
                 </View>
             </TextBox>
 
-            <TextBox>
+            <TextBox style={styles.textbox}>
                 <Text style={styles.text}>How was your quality of sleep last night?</Text>
                 <View style={styles.options}>
                     {sleepOptions.map((option) => chooseSleepQualityOption(option))}
@@ -122,7 +94,7 @@ export default function AddDailyScreen({ navigation }) {
                     buttonStyle={{ borderColor: '#2f113b' }}
                     titleStyle={{ color: '#2f113b' }} 
                     title=' SAVE' 
-                    onPress={saveDaily}
+                    onPress={saveDailySleep}
                     />
             </View>
         </SafeAreaView>
@@ -151,4 +123,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
     },
+    textbox: {
+        backgroundColor: '#fff'
+    }
   });
