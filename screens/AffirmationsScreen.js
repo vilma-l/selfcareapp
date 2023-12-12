@@ -31,10 +31,10 @@ export default function AffirmationsScreen({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text style={{ fontSize: 30, textAlign: 'center', padding: 10, marginBottom: 100 }}>{affirmation}</Text>
+            <Text style={{ fontSize: 30, textAlign: 'center', padding: 10, marginBottom: 50 }}>{affirmation}</Text>
             <Image
                 source={require('../logo.png')}
-                style={{width: 250, height: 250, marginBottom: 100}}    
+                style={{width: 250, height: 250, marginBottom: 40}}    
             />
             <View style={styles.buttons}>
                 <Button
