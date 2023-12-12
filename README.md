@@ -1,23 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 
 <!-- PROJECT LOGO -->
 <br />
@@ -33,7 +14,6 @@
     <br />
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -60,7 +40,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -73,7 +52,6 @@ On this page, you will find information and instructions on the created mobile a
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ### Built With
 
 * <a href="https://expo.dev/">Expo</a>
@@ -83,7 +61,6 @@ On this page, you will find information and instructions on the created mobile a
 * <a href="https://date-fns.org/docs/Getting-Started/">date-fns</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
@@ -127,16 +104,24 @@ Install Expo CLI (see below or follow <a href="https://docs.expo.dev/get-started
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Below I've included a few screenshots of the app in use.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+The login and signup pages, as well as the navigation when the user is not logged in:
+
+<img width="225" alt="nav1" src="https://github.com/vilma-l/selfcareapp/assets/122804701/9d8c486d-5933-45bd-954d-95a16b890d88"><img width="225" alt="screen1" src="https://github.com/vilma-l/selfcareapp/assets/122804701/7b9acc45-b298-48ff-b2c9-db6b897a2e6e"><img width="225" alt="screen2" src="https://github.com/vilma-l/selfcareapp/assets/122804701/6e7390f6-9a18-414b-8e35-f088dcc96bb4">
+
+Next, we have a screenshot of the page that opens every time the user logs in or opens the app, the mood tracker, as well as the navigation for a logged-in user:
+
+<img width="225" alt="screen3" src="https://github.com/vilma-l/selfcareapp/assets/122804701/292f853a-724e-461e-ac83-00cf387ddbef"><img width="225" alt="screen4" src="https://github.com/vilma-l/selfcareapp/assets/122804701/2dcec5fb-8eac-44b6-932b-477298478c4c">
+
+Here is the rest of the screenshots: the main page with an affirmation, the sleep tracker, the routine tracker, and the mood tracker calendar:
+
+<img width="225" alt="screen5" src="https://github.com/vilma-l/selfcareapp/assets/122804701/c9bc0c58-9dda-4a86-9be7-f3045da7384e)"><img width="225" alt="screen6" src="https://github.com/vilma-l/selfcareapp/assets/122804701/a411636a-8203-4870-8ad2-d8c9777a57fb"><img width="225" alt="screen7" src="https://github.com/vilma-l/selfcareapp/assets/122804701/8d4420b6-c833-44bf-8f76-80c1700ef2ee"><img width="225" alt="screen8" src="https://github.com/vilma-l/selfcareapp/assets/122804701/743123b3-fdd4-4d0a-8f73-7d7a68f5f372">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
@@ -145,7 +130,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
