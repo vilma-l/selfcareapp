@@ -29,7 +29,7 @@
 <h3 align="center">Serendipity - Selfcare App</h3>
 
   <p align="center">
-    project_description
+    A React Native app for your selfcare needs: mood, sleep and daily routine tracking and motivating affirmations to make your day better!
     <br />
   </p>
 </div>
@@ -64,9 +64,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This app was created as a final project for Haaga-Helia's Mobile Programming -course (5 ECTS) in November and December of 2023. It is a solo project of a 2nd year IT-student.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+The main idea was to create a mobile app, where the user can log and track their mood, sleep and daily routines. The app also includes motivating affirmations to cheer the user up every time they open the app.
+
+On this page, you will find information and instructions on the created mobile app, called Serendipity.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -74,14 +76,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* <a href="https://expo.dev/">Expo</a>
+* <a href="https://reactnative.dev/">React Native</a>
+* <a href="https://docs.expo.dev/versions/latest/sdk/sqlite/">Expo SQLite</a>
+* <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>
+* <a href="https://date-fns.org/docs/Getting-Started/">date-fns</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,31 +89,39 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The app operates on both Android and iOS. Below are the instructions for you to get a local copy of the app up and running.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Install npm (see below or follow <a href="https://docs.npmjs.com/getting-started">these</a> instructions)
 * npm
   ```sh
   npm install npm@latest -g
   ```
 
+Install Expo CLI (see below or follow <a href="https://docs.expo.dev/get-started/installation/">these</a> instructions)
+* Expo CLI
+  ```sh
+  npm install --global expo-cli
+  ```
+
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repository
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/vilma-l/selfcareapp.git
+   ```
+2. Get into the project:
+   ```
+   cd selfcareapp
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Start expo
+   ```sh
+    expo start
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
