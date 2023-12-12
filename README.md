@@ -119,7 +119,7 @@ Next, we have a screenshot of the page that opens every time the user logs in or
 
 Here is the rest of the screenshots: the main page with an affirmation, the sleep tracker, the routine tracker, and the mood tracker calendar:
 
-<img width="225" alt="screen5" src="https://github.com/vilma-l/selfcareapp/assets/122804701/c9bc0c58-9dda-4a86-9be7-f3045da7384e)"> <img width="225" alt="screen6" src="https://github.com/vilma-l/selfcareapp/assets/122804701/a411636a-8203-4870-8ad2-d8c9777a57fb">< img width="225" alt="screen7" src="https://github.com/vilma-l/selfcareapp/assets/122804701/8d4420b6-c833-44bf-8f76-80c1700ef2ee"> <img width="225" alt="screen8" src="https://github.com/vilma-l/selfcareapp/assets/122804701/743123b3-fdd4-4d0a-8f73-7d7a68f5f372">
+<img width="225" alt="screen5" src="https://github.com/vilma-l/selfcareapp/assets/122804701/c9bc0c58-9dda-4a86-9be7-f3045da7384e)"> <img width="225" alt="screen6" src="https://github.com/vilma-l/selfcareapp/assets/122804701/a411636a-8203-4870-8ad2-d8c9777a57fb"> <img width="225" alt="screen7" src="https://github.com/vilma-l/selfcareapp/assets/122804701/8d4420b6-c833-44bf-8f76-80c1700ef2ee"> <img width="225" alt="screen8" src="https://github.com/vilma-l/selfcareapp/assets/122804701/743123b3-fdd4-4d0a-8f73-7d7a68f5f372">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
