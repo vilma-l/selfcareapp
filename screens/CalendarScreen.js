@@ -1,9 +1,10 @@
 //NOT DONE
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { Text, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import { getAllMood } from '../database';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import TextBox from '../components/TextBox';
 
 const moodOptions = [
     {name: 'weather-sunny', label: 'Great'},
@@ -23,33 +24,42 @@ export default function CalendarScreen() {
 
     const fetchDailyData = async () => {
         try {
-            const data = await getAllMood();
-            setDailyData(data);
+            const moodData = await getAllMood();
+            setDailyData(moodData);
         } catch (error) {
             console.error('Error fetching daily data:', error);
         }
     };
+    
 
-    const getMoodIcon = (moodName) => {
-        const mood = moodOptions.find((option) => option.name === moodName);
-        return mood ? mood.name : 'head-question-outline'; // Default icon if mood is not found
+    const renderItem = ({ item }) => {
+        return(
+        <SafeAreaView>
+            <TextBox>
+            <Text>Date: {item.date}</Text>
+            <Text>Mood: <MaterialCommunityIcons name={item.mood} size={24} color="black" /></Text>
+            </TextBox>
+        </SafeAreaView>
+        );
     };
 
-    const renderItem = ({ item }) => (
-        <View>
-            <Text>Date: {item.date}</Text>
-            <Text>Mood: {item.mood.label}</Text>
-            <MaterialCommunityIcons name={getMoodIcon(item.mood.name)} size={24} color="black" />
-        </View>
-    );
-
     return(
-        <View>
+        <SafeAreaView style={styles.container}>
             <FlatList 
                 data={dailyData}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={renderItem}
             />
-        </View>
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#E6E6FA',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
+    },
+});

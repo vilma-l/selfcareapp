@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, SafeAreaView, View} from 'react-native';
 import { addSleep, getSleepByDate, updateSleep } from '../database';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TextBox from '../components/TextBox';
+import { format } from 'date-fns';
 
 const sleepOptions = [
     {name: 'emoticon-happy-outline', label: 'Great'},
@@ -20,7 +21,7 @@ export default function AddDailySleepScreen({ navigation }) {
     // Save the daily sleep data
     const saveDailySleep = async () => {
         if (hoursOfSleep && sleepQuality) {
-            const date = new Date().toISOString();
+            const date = format(new Date(), 'MMMM do yyyy, h:mm:ss a');
             try {
                 const existingSleepData = await getSleepByDate(date);
     

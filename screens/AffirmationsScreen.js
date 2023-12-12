@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Text, View, SafeAreaView, StyleSheet } from "react-native";
+import { Alert, Text, View, SafeAreaView, StyleSheet, Image } from "react-native";
 import { Button } from '@rneui/themed';
 import { AFF_API_URL } from '@env';
 import {auth} from '../firebase';
@@ -31,14 +31,46 @@ export default function AffirmationsScreen({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>{affirmation}</Text>
+            <Text style={{ fontSize: 30, textAlign: 'center', padding: 10, marginBottom: 100 }}>{affirmation}</Text>
+            <Image
+                source={require('../logo.png')}
+                style={{width: 250, height: 250, marginBottom: 100}}    
+            />
             <View style={styles.buttons}>
-                <Button title='Track your mood' color='#2f113b' onPress={() => navigation.navigate('Mood Tracker')} />
-                <Button title='Log your sleep' color='#2f113b' onPress={() => navigation.navigate('Sleep Tracker')} />
-                <Button title='Routines' color='#2f113b' onPress={() => navigation.navigate('Routines')} />
+                <Button
+                    size='md'
+                    type='outline'
+                    buttonStyle={{ borderColor: '#2f113b' }}
+                    titleStyle={{ color: '#2f113b' }}
+                    title='Track your mood' 
+                    onPress={() => navigation.navigate('Mood Tracker')}
+                />
+                <Button
+                    size='md'
+                    type='outline'
+                    buttonStyle={{ borderColor: '#2f113b' }}
+                    titleStyle={{ color: '#2f113b' }}
+                    title='Log your sleep' 
+                    onPress={() => navigation.navigate('Sleep Tracker')}
+                />
+                <Button
+                    size='md'
+                    type='outline'
+                    buttonStyle={{ borderColor: '#2f113b' }}
+                    titleStyle={{ color: '#2f113b' }}
+                    title='Routines' 
+                    onPress={() => navigation.navigate('Routines')}
+                />
             </View>
             <View style={styles.buttons}>
-                <Button title='LOGOUT' color='#2f113b' onPress={handleLogout} />
+                <Button
+                    size='lg'
+                    type='outline'
+                    buttonStyle={{ borderColor: '#2f113b' }}
+                    titleStyle={{ color: '#2f113b' }}
+                    title='LOGOUT' 
+                    onPress={handleLogout} 
+                />
             </View>
         </SafeAreaView>
     );
@@ -52,16 +84,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       padding: 20,
     },
-    text: {
-        fontSize: 20,
-        color: 'black',
-        textAlign: 'center',
-    },
     buttons: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         marginTop: 20,
+        marginBottom: 60,
     },
     options: {
         flexDirection: 'row',

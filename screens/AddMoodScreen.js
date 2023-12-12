@@ -4,6 +4,7 @@ import { addMood } from '../database';
 import TextBox from '../components/TextBox';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Button } from '@rneui/themed';
+import { format } from 'date-fns';
 
 const moodOptions = [
     {name: 'weather-sunny', label: 'Great'},
@@ -20,7 +21,7 @@ export default function AddMoodScreen({ navigation }) {
     // Save the mood data
     const saveMood = async () => {
         if (mood) {
-            const date = new Date().toISOString();
+            const date = format(new Date(), 'MMMM do yyyy, h:mm:ss a');
             try {
                 // Save mood data
                 await addMood(date, mood);

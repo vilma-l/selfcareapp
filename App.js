@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { initializeApp, getApps } from 'firebase/app';
 import { auth, firebaseConfig } from './firebase';
 
-import AddDailyScreen from './screens/AddDailySleepScreen';
 import AffirmationsScreen from './screens/AffirmationsScreen';
 import AddMoodScreen from './screens/AddMoodScreen';
 import CalendarScreen from './screens/CalendarScreen';
@@ -39,10 +38,12 @@ export default function App() {
               name="Mood Tracker"
               component={AddMoodScreen}
               options={{
-                title: 'Mood Tracker',
+                title: "How's your mood?",
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="table-heart" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
             <Drawer.Screen
@@ -53,6 +54,8 @@ export default function App() {
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="hand-heart-outline" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
             <Drawer.Screen
@@ -63,6 +66,8 @@ export default function App() {
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="sleep" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
             <Drawer.Screen
@@ -73,16 +78,20 @@ export default function App() {
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="notebook-outline" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
             <Drawer.Screen
               name="Calendar"
               component={CalendarScreen}
               options={{
-                title: 'Calendar',
+                title: 'Mood Tracker Calendar',
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="home-outline" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
           </>
@@ -96,6 +105,8 @@ export default function App() {
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="login-variant" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
             <Drawer.Screen
@@ -106,6 +117,8 @@ export default function App() {
                 drawerIcon: ({ focused, color, size }) => (
                   <MaterialCommunityIcons name="file-sign" size={24} color="black" />
                 ),
+                drawerActiveBackgroundColor: '#E6E6FA',
+                drawerActiveTintColor: '#2f113b',
               }}
             />
           </>
