@@ -1,4 +1,4 @@
-import { StyleSheet, Alert, TouchableOpacity, SafeAreaView, Text, View } from 'react-native';
+import { StyleSheet, Alert, TouchableOpacity, SafeAreaView, Text, View, Image } from 'react-native';
 import React, { useState } from "react";
 import { addMood } from '../database';
 import TextBox from '../components/TextBox';
@@ -60,6 +60,10 @@ export default function AddMoodScreen({ navigation }) {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Image
+                source={require('../logo.png')}
+                style={{width: 200, height: 200, marginBottom: 50}}    
+            />
             <TextBox>
             <Text style={styles.text}>How's your mood?</Text>
             <View style={styles.options}>

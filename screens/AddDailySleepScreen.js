@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, TextInput } from 'react-native';
 import { useState } from 'react';
 import { Button } from '@rneui/themed';
-import { Text, TouchableOpacity, SafeAreaView, View} from 'react-native';
+import { Text, TouchableOpacity, SafeAreaView, View, Image } from 'react-native';
 import { addSleep, getSleepByDate, updateSleep } from '../database';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TextBox from '../components/TextBox';
@@ -67,7 +67,10 @@ export default function AddDailySleepScreen({ navigation }) {
 
     return(
         <SafeAreaView style={styles.container}>
-
+            <Image
+                source={require('../logo.png')}
+                style={{width: 200, height: 200, marginBottom: 30}}    
+            />
             <TextBox style={styles.textbox}>
                 <Text style={styles.text}>How many hours did you sleep last night?</Text>
                 <View style={styles.options}>
