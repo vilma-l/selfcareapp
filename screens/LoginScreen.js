@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { SafeAreaView, TextInput, Text, View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView, TextInput, Text, View, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
 import { Button } from '@rneui/themed';
 
 export default function LoginScreen() {
@@ -26,6 +26,10 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Image
+                source={require('../logo.png')}
+                style={{width: 200, height: 200, marginBottom: 100}}    
+            />
             <TextInput
                 style={styles.input}
                 value={email}
@@ -49,9 +53,9 @@ export default function LoginScreen() {
                 onPress={onLogin}
             />
             <View>
-                <Text>Not registered yet?</Text>
+                <Text style={styles.text}>Not registered yet?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                    <Text style={{color: '#2f113b'}}>Register here</Text>
+                    <Text style={{color: '#2f113b', padding: 10, textAlign: 'center'}}>REGISTER HERE</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -67,6 +71,9 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
+        padding: 10,
+    },
+    text: {
         padding: 10,
     },
   });
